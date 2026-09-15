@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="oyuncak.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="0"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1049"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="oyuncaklar" custom_title="0" dock_id="2" table="4,10:mainoyuncaklar"/><dock_state state="000000ff00000000fd0000000100000002000005a900000390fc0100000002fb000000160064006f0063006b00420072006f00770073006500310100000000000002360000000000000000fb000000160064006f0063006b00420072006f00770073006500320100000000000005a90000011e00ffffff000002690000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1*">-- 1
+CREATE TABLE oyuncaklar (
+id     INTEGER PRIMARY KEY AUTOINCREMENT,
+isim   TEXT NOT NULL,
+cesit  TEXT,
+fiyat  INTEGER CHECK (fiyat &gt; 0),
+renk   TEXT DEFAULT 'kırmızı'
+);
+-- 2  (renk otomatik 'kırmızı' olur)
+INSERT INTO oyuncaklar (isim, cesit, fiyat) VALUES ('Şimşek', 'araba', 50);
+-- 3
+INSERT INTO oyuncaklar (isim, cesit, fiyat, renk) VALUES
+('Ayıcık', 'peluş', 80, 'kahverengi'),
+('Kale Seti', 'lego', 150, 'gri'),
+('Zıpzıp', 'top', 20, 'sarı'),
+('Barbi', 'bebek', 90, 'pembe');
+-- 4
+SELECT * FROM oyuncaklar;
+-- 5
+SELECT isim, fiyat FROM oyuncaklar WHERE fiyat &gt;= 80;
+-- 6
+SELECT * FROM oyuncaklar ORDER BY fiyat DESC LIMIT 2;
+-- 7
+SELECT * FROM oyuncaklar WHERE isim LIKE 'Z%';
+-- 8
+SELECT * FROM oyuncaklar WHERE cesit IN ('araba', 'top');
+-- 9
+SELECT * FROM oyuncaklar WHERE fiyat BETWEEN 20 AND 60;
+-- 10
+UPDATE oyuncaklar SET renk = 'mavi' WHERE isim = 'Şimşek';
+-- 11
+DELETE FROM oyuncaklar WHERE isim = 'Zıpzıp';
+-- 12  WHERE olmadığı için kutudaki HER ŞEY silinir.
+-- 13
+ALTER TABLE oyuncaklar ADD COLUMN kimin TEXT;
+-- 14
+UPDATE oyuncaklar SET kimin = 'Ali' WHERE isim = 'Kale Seti';
+-- 15
+ALTER TABLE oyuncaklar RENAME COLUMN cesit TO tur;
+-- 16</sql><current_tab id="0"/></tab_sql></sqlb_project>
