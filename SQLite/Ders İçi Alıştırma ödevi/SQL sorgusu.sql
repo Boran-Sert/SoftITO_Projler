@@ -87,7 +87,10 @@ SELECT u.ad, AVG(o.gun) AS ortalama_sure FROM uyeler u JOIN odunc o ON u.id = o.
 SELECT k.ad, COUNT(o.kitap_id) AS odunc_sayisi FROM kitaplar k JOIN odunc o ON k.id = o.kitap_id GROUP BY k.id, k.ad;
 
 --- Şehirlere göre üye sayısı
-SELECT k.ad, COUNT(o.kitap_id) AS odunc_sayisi FROM kitaplar k JOIN odunc o ON k.id = o.kitap_id GROUP BY k.id, k.ad;
+SELECT sehir, COUNT(*) AS uye_sayisi
+FROM uyeler
+GROUP BY sehir
+ORDER BY uye_sayisi DESC;
 
 --- En az bir kitabı 30 günden fazla tutmuş olanlar
 SELECT ad FROM uyeler WHERE id IN (SELECT uye_id FROM odunc WHERE gun > 30);
