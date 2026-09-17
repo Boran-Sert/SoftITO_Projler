@@ -1,0 +1,33 @@
+1. 
+* Kütüphanelerin İçe Aktarılması: Verileri düzenlemek ve analiz etmek için pandas ve numpy kütüphanelerini, grafik çizmek için ise matplotlib, seaborn ve istatistik için scipy kütüphanelerini import ederek işe başlarız.
+* Görsel Stil ve Grafik Standartları: Grafiklerin her bilgisayarda aynı boyutta, şık ve okunabilir görünmesi için sns.set_style ile arka planı beyaz ızgara yaparız ve varsayılan grafik boyutunu plt.rcParams ile (10, 6) olarak sabitleriz.
+* Rastgelelik Sabitleme (Seed): Kodumuzu her çalıştırdığımızda aynı rastgele sayıların üretilmesini sağlamak ve analiz sonuçlarımızın tutarlı olması için np.random.seed(42) kodunu kullanırız.
+* Pandas Görüntüleme Ayarları: Büyük veri setlerinde sütunların veya satırların gizlenmesini engellemek ve ondalık sayıların karmaşık görünmesini önlemek için pd.set_option ile gösterim limitlerini ve virgülden sonra iki basamak (%.2f) ayarını yaparız.
+
+2. 
+* 1000 Müşterilik Veri Üretimi: Gerçek bir verimiz olmadığında, numpy'ın rastgele dağılım fonksiyonlarını kullanarak yaş, gelir, kayıt tarihi gibi gerçekçi değişkenlerden oluşan yapay bir pd.DataFrame tablosu oluştururuz.
+* Kasıtlı Şehir Yazım Tutarsızlığı: Gerçek hayattaki insan hatalarını taklit etmek için şehir listesine bilinçli olarak hem küçük harfli hem de tamamen büyük harfli (İstanbul/istanbul, Ankara/ANKARA) şehir isimleri ekleriz.
+
+3. 
+* Eksik Değer Ekleme: Analiz becerilerimizi test etmek amacıyla, veri setindeki bazı hücreleri df.sample ile rastgele seçip değerlerini np.nan (boş değer) yaparak eksik veri simülasyonu yaparız.
+* Aşırı Uç Değer (Outlier) ve Mantıksız Yaş Oluşturma: Gelir sütunundaki maksimum değeri rastgele kat sayılarla çarparak olağandışı yüksek gelirler yaratır; yaş sütununa ise -5 ve 150 gibi imkansız yaş değerleri ekleriz.
+* Yinelenen (Duplicate) Satır Ekleme: Veri setinin sonuna df.sample(5) ile mevcut satırlardan kopyalar seçip pd.concat kullanarak ekler ve veri tekrarı hatası oluştururuz.
+
+4. 
+* Satır ve Sütun Kontrolü: Veri setimizin büyüklüğünü hızlıca görmek için df.shape özelliğini kullanırız; bu bize toplam kaç satır ve sütun olduğunu bir çift sayı olarak verir.
+* Veri Tipleri ve Boş Hücre Analizi: Hangi sütunda hangi veri tipinin (sayı, metin, tarih) olduğunu ve ne kadar eksik veri bulunduğunu tek seferde incelemek için df.info() fonksiyonunu kullanırız.
+* Satırları Görüntüleme: Verinin genel yapısını göz ucuyla incelemek için ilk 5 satır için df.head(), son 5 satır için df.tail() ve rastgele örnekler için df.sample() işlevlerini çalıştırırız.
+
+5. 
+* Özet Tablo Oluşturma: Her sütundaki boş hücre sayısını df.isnull().sum() ile bulup, bunu toplam satır sayısına bölerek eksik veri yüzdelerini içeren bilgilendirici bir tablo hazırlarız.
+* Eksik Değer Isı Haritası: Boş hücrelerin veri setinin neresinde yoğunlaştığını görsel olarak fark edebilmek için sns.heatmap kullanarak renkli bir harita çizeriz.
+* Yinelenen Kayıt Tespiti: Veri setinde birebir aynı olan tekrarlı satırların toplam sayısını hızlıca bulabilmek için df.duplicated().sum() kodunu çalıştırırız.
+
+6. 
+* Şehir İsimleri Dağılımı ve Temizliği: Yazım hatalarını görmek için value_counts() kullanır; ardından tüm şehir isimlerini str.lower() ile küçük harfe çevirip str.strip() ile kenar boşluklarını silerek standart hale getiririz.
+* Mantık Dışı Yaş Tespiti: İnsan ömrüyle uyuşmayan yaşları bulmak için filtreleme yöntemiyle df[(df['yas'] < 0) | (df['yas'] > 100)] kodunu yazar ve bu hatalı satırları listeleriz.
+
+7. 
+* Betimsel İstatistikler ve Çarpıklık: Sayısal verilerin merkezini ve dağılımını anlamak için df.describe() kullanırız; dağılımın simetrik olup olmadığını ise .skew() ve .kurt() fonksiyonları ile ölçeriz.
+* Dağılım ve Kutu Grafikleri: Değerlerin nasıl yığıldığını görmek için sns.histplot ile histogram çizer, verideki aşırı uç değerleri (aykırı değerleri) yakalamak için ise sns.boxplot grafiğini kullanırız.
+* Korelasyon Analizi: Sayısal değişkenlerin birbirleriyle olan doğrusal ilişkilerini df.corr() ile hesaplar ve bu ilişkilerin gücünü sns.heatmap ısı haritası grafiği ile renklendirerek görselleştiririz.
