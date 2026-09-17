@@ -336,3 +336,61 @@ if toplam_tutar > 500:
     print(f"İndirimli Ödenecek Tutar: {odenecek_tutar} TL")
 else:
     print(f"Ödenecek Tutar: {toplam_tutar} TL")
+
+
+# ------------------------ 3. KISIM -----------------------------
+
+# ---------------24--------------------
+# Araba Sınıfı
+class Araba:
+    def __init__(self, marka, model, hiz=0):
+        self.marka = marka
+        self.model = model
+        self.hiz = hiz
+
+    def hizlandir(self, artis):
+        self.hiz += artis
+
+    def bilgi_goster(self):
+        print(f"Marka: {self.marka}, Model: {self.model}, Hız: {self.hiz} km/s")
+
+# Test
+araba1 = Araba("Toyota", "Corolla", 60)
+araba1.bilgi_goster()
+araba1.hizlandir(30)
+araba1.bilgi_goster()
+
+
+# ---------------25--------------------
+# Dikdörtgen Sınıfı
+class Dikdortgen:
+    def __init__(self, uzunluk, genislik):
+        self.uzunluk = uzunluk
+        self.genislik = genislik
+
+    def alan_hesapla(self):
+        return self.uzunluk * self.genislik
+
+    def cevre_hesapla(self):
+        return 2 * (self.uzunluk + self.genislik)
+
+# Test
+dikdortgen1 = Dikdortgen(10, 5)
+print(f"Alan: {dikdortgen1.alan_hesapla()}")
+print(f"Çevre: {dikdortgen1.cevre_hesapla()}")
+
+
+# ---------------26--------------------
+# Kitap Sınıfı
+class Kitap:
+    def __init__(self, ad, yazar, sayfa_sayisi):
+        self.ad = ad
+        self.yazar = yazar
+        self.sayfa_sayisi = sayfa_sayisi
+
+    def ozet(self):
+        return f"{self.ad} - {self.yazar} ({self.sayfa_sayisi} sayfa)"
+
+# Test
+kitap1 = Kitap("Suç ve Ceza", "Dostoyevski", 671)
+print(kitap1.ozet())
